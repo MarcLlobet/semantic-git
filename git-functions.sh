@@ -11,5 +11,6 @@ function jiraCommit {
     [[ -z "$text" ]] && optionalText="add $type" || optionalText="$text"; 
     [[ -z "$hash" ]] && optionalHash='' || optionalHash="($hash)"; 
     message="$type$optionalHash: $optionalText"; 
+    echo "git commit -m \"$message\""
     git commit -m"$message";
 };
