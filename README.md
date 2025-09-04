@@ -25,12 +25,32 @@ Using the git commands above will set a commit message.
 
 Without a custom message, the default would be `"add {type}"`.
 
-Branch name following the pattern [A-B]-[0-9] will be included in the commit message.
+### Branch pattern definition:
+```regexp
+(([A-Z]+)-([0-9]+))[_/](\w+-?)+
+```
+```glob
+[A-B]-[0-9]/kebab-case
+[A-B]-[0-9]_kebab-case
+```
+
+### Examples of good patterns:
+- TAG-123/a-good-example
+- XY-56789_another-good-example
 
 ### Examples
-| Command  | Commit message |  Pattern branch  |
-| ------------- | ------------- | ------------- |
-| `git feat`  | `feat: add feat`  | ❌ |
-| `git fix any message`  | `fix: any message`  | ❌ |
-| `git refactor`  | `refactor(TAG-123): add refactor`  | ✅ |
-| `git test increase coverage`  | `test(TAG-123): increase coverage`  | ✅ |
+| Command                 | Commit message      |  Pattern branch  |
+| ----------------------- | --------------------------------- | -- |
+| `git feat`              | `feat: add feat`                  | ❌ |
+| `git fix any message`   | `fix: any message`                | ❌ |
+| `git chore`             | `chore(TAG-123): branch desc`     | ✅ |
+| `git test any message`  | `test(TAG-123): any message`      | ✅ |
+
+> [!NOTE]  
+> Given we have a non-pattern branch, like 'main'
+> and a pattern branch, like 'TAG-123/branch-desc'.
+
+
+## Todo
+- Update git-config-aliases.ini to work as git-functions.sh does
+- Add unit tests to ensure expected behaviour
