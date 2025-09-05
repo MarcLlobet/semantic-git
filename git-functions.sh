@@ -21,5 +21,6 @@ function jiraCommit {
 
     commitMessage="$type$hash: $commitDescription"; 
 
+    echo "git commit -m \"$commitMessage\""
     git commit -m "$commitMessage"
 };
